@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Slideshow 4</title>
+
+    <style>
+        body {
+            width: 100%;
+            margin: 0;
+        }
+
+        .container {
+            font-family: sans-serif;
+            position: relative;
+        }
+
+        .img-container {
+            overflow: hidden;
+            margin: 0 50px;
+        }
+
+        .images {
+            display: flex;
+            align-items: center;
+            width: 1280px;
+            position: absolute;
+            left: 0;
+            transition: all 1s ease-in;
+        }
+
+        .images img {
+            width: 370px;
+            max-height: 600px;
+        }
+
+        .images img:not(:last-child) {
+            margin-right: 20px;
+        }
+
+        .controls {
+            position: absolute;
+        }
+
+        .prev, .next {
+            position: fixed;
+            top: 50%;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            margin: auto;
+            margin-bottom: 50%;
+            font-size: larger;
+        }
+
+        .prev {
+            left: 0;
+            margin-left: 5px;
+        }
+
+        .next {
+            right: 0;
+            margin-right: 5px;
+        }
+
+        .clear {
+            clear: both;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="img-container">
+            <div class="images" id="slides">
+                <img src="TheMartian.jpg">
+                <img src="BraveNewWorld.jpg">
+                <img src="TheMartian.jpg">
+                <img src="BraveNewWorld.jpg">
+                <img src="TheMartian.jpg">
+                <!-- <img src="TheRoadAhead.jpg"> -->
+                <!-- <img src="Foundation.jpg"> -->
+                <!-- <img src="Hyperion.jpg"> -->
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="controls">
+            <button class="prev" onclick="moveSlide(1)"> < </button>
+            <button class="next" onclick="moveSlide(-1)"> > </button>
+        </div>
+    </div>
+
+    <script>
+        const slides = [
+            {
+                date: "1932",
+                image: "BraveNewWorld.jpg"
+            },
+            {
+                date: "2011",
+                image: "TheMartian.jpg"
+            },
+            {
+                date: "1996",
+                image: "TheRoadAhead.jpg"
+            },
+            {
+                date: "1951",
+                image: "Foundation.jpg"
+            },
+            {
+                date: "1986",
+                image: "Hyperion.jpg"
+            },
+        ];
+
+        var countSlides = 0;
+        
+        function moveSlide(direction){
+            const slideImage = document.getElementsByClassName("images");
+            countSlides += direction;
+
+            const val = `${370 * countSlides}px`;
+            console.log('direction', direction, val);
+            slideImage[0].style.left = val;
+        }
+        </script>
+</body>
+</html>

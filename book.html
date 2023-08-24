@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Table</title>
+<style>
+#myBook{
+    background-color: white;
+    color:black;
+    text-align: center;
+    font-size: 300%;
+    font-family: cursive;
+}
+
+table{
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid black;
+}
+
+th{
+    text-align: center;
+    padding: 8px;
+    border-collapse: collapse;
+    border: 1px solid black;
+    pointer-events: none;
+}
+
+td{
+    text-align: left;
+    padding: 8px;
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+
+tr{
+    transition: all 1s;
+}
+
+tr:nth-child(even){
+    background-color: yellow;
+}
+
+tr:hover{
+    background-color: lightgray;
+}
+tr:hover .wrapper{
+    background-color: black;
+}
+
+tr:nth-child(even):hover{
+    background-color: yellowgreen;
+}
+tr:nth-child(even):hover .wrapper{
+    background-color: white;
+}
+
+
+td .wrapper {
+    width: 50px;
+    height: auto;
+    transition: all 3s;
+    margin: auto;
+    display: flex;
+    padding: 5px;
+    justify-content: center;
+    align-items: center; 
+    border-radius: 7px;  
+}
+
+td .wrapper img {
+    width: 50px;
+}
+
+
+table#label{
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid black;
+    margin-top: 20px;
+}
+table#label th{
+    text-align: center;
+    border-collapse: collapse;
+}
+table#label td{
+    text-align: center;
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+table#label tr{
+    background-color: white;
+}
+
+
+</style>
+
+<h1 id="myBook" > Books</h1>
+
+</head>
+
+<body>
+
+<table>
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Published In</th>
+        </tr>
+    </thead>
+    <tbody id="data"></tbody>
+    <tbody id="userInput"></tbody>
+</table>
+
+<table id="label">
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Published In</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <input type="file" id="fileInput" name="fileInput">
+            </td>
+            <td>
+                <input type="text" id="BookName" name="BookName">
+            </td>
+            <td>
+                <input type="text" id="BookAuthor" name="BookAuthor">
+            </td>
+            <td>
+                <input type="text" id="BookDate" name="BookDate">
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="4" style="text-align: center;">
+                <button type="submit" id="SubmitButton">Submit</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+<script>
+    const book = [
+        {
+            name: "The Road Ahead",
+            author: "Bill Gates",
+            date: "1996",
+            image: "TheRoadAhead.jpg"
+        },
+        {
+            name: "The Martian",
+            author: "Andy Weri",
+            date: "2011",
+            image: "TheMartian.jpg"
+        },
+        {
+            name: "Brave New World",
+            author: "Aldous Huxley",
+            date: "1932",
+            image: "BraveNewWorld.jpg"
+        },
+        {
+            name: "Hyperion",
+            author: "Dan Simmons",
+            date: "1986",
+            image: "Hyperion.jpg"
+        },
+        {
+            name: "Foundation",
+            author: "Isaac Asimov",
+            date: "1951",
+            image: "Foundation.jpg"
+        },
+       
+    ]
+
+    let length = book.length;
+    let text = "";
+    book.forEach(myFunction);
+
+    function myFunction(value) {
+        text += `<tr>
+            <td>
+                <div class="wrapper">
+                    <img src="${value.image}">
+                </div>
+            </td>
+            <td>${value.name}</td>
+            <td>${value.author}</td>
+            <td>${value.date}</td>
+        </tr>`;
+    }
+    document.getElementById('data').innerHTML = text;
+
+
+    function InputFunction(value){
+        const InputImage = document.getElementById('fileInput').value;
+        const InputTitle = document.getElementById('BookName').value.trim();
+        const InputAuthor = document.getElementById('BookAuthor').value.trim();
+        const InputDate = document.getElementById('BookDate').value.trim();
+
+        if (InputTitle === '' || InputAuthor === '' || InputDate === '') {
+            alert('Please fill remaining fields');
+            return;
+        }
+
+        document.getElementById('data').innerHTML += `
+            <tr>
+                <td>
+                    <div class="wrapper">
+                        <img src="${InputImage}">
+                    </div>
+                </td>
+                    <td>${InputTitle}</td>
+                    <td>${InputAuthor}</td>
+                    <td>${InputDate}</td>
+            </tr>
+        `;
+
+        document.getElementById('fileInput').value = '';
+        document.getElementById('BookName').value = '';
+        document.getElementById('BookAuthor').value = '';
+        document.getElementById('BookDate').value = '';
+    }
+    document.getElementById('SubmitButton').addEventListener('click', InputFunction);
+      
+      
+</script>
+
+</body>
+</html>
+

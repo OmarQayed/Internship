@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Slideshow 5 </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            width: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            font-family: sans-serif;
+            position: relative;
+        }
+
+        .img-container {
+            overflow: hidden;
+            margin: 0 auto;
+        }
+
+        .frame {
+            width: 1090px;/*350x3 images + 20x2 space between them = 1090*/
+            overflow: hidden;
+            margin: 0 auto; 
+        }
+
+        .images {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: all 1s ease-in-out;
+            width: auto; 
+            margin: 0 auto;
+            left: 0;
+        }
+
+        .images img {
+            width: 350px;
+            height: 600px;
+        }
+
+        .images img:not(:last-child) {
+            margin-right: 20px;
+        }
+
+        .controls {
+            position: absolute;
+        }
+
+        .prev, .next {
+            position: fixed;
+            top: 50%;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: larger;
+        }
+
+        .prev {
+            left: 0;
+            margin-left: 5px;
+        }
+
+        .next {
+            right: 0;
+            margin-right: 5px;
+        }
+
+        .clear {
+            clear: both;
+        }    
+
+        .wrapper {
+            position: absolute;
+            width: 350px;
+            height: 600px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 5px;
+            border-radius: 7px;
+            background-color: yellow; 
+            z-index: -1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="img-container">
+            <div class="frame">
+                <div class="images" id="slides">
+                    
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="controls">
+            <button class="prev" onclick="moveLeft()"> < </button>
+            <button class="next" onclick="moveRight()"> > </button>
+        </div>
+    </div>
+
+    <script>
+        const slides = [
+            {
+                date: "1932",
+                image: "BraveNewWorld.jpg"
+            },
+            {
+                date: "2011",
+                image: "TheMartian.jpg"
+            },
+            {
+                date: "1996",
+                image: "TheRoadAhead.jpg"
+            },
+            {
+                date: "1951",
+                image: "Foundation.jpg"
+            },
+            {
+                date: "1986",
+                image: "Hyperion.jpg"
+            },
+        ];
+
+        const imageSlides = document.getElementById("slides");
+        imageSlides.style.width = `${370 * slides.length}px`;
+
+        let length = slides.length;
+        let allImages = '';
+        slides.forEach(myFunction);
+
+    function myFunction(value) {
+        allImages += 
+            `
+                <div class="images">
+                    <img src="${value.image}">
+                </div>
+            `;
+        }
+        document.getElementById('slides').innerHTML = allImages;
+        var countSlides = 0;
+        
+        function moveLeft(){
+            console.log('<', 'countSlides', countSlides);
+            if (countSlides < slides.length && countSlides >= 1) {
+                countSlides--;
+                imageSlides.style.left = `${-370 * countSlides}px`;
+            } else if (countSlides >= slides.length) {
+                countSlides = slides.length - 1;
+            }
+        }
+        
+        function moveRight(){
+            console.log('>', 'countSlides', countSlides);
+            if (countSlides < slides.length - 3 && countSlides >= 0) {
+                countSlides++;
+                imageSlides.style.left = `${-370 * countSlides}px`;
+            } else if (countSlides > slides.length - 1) {
+                countSlides = slides.length;
+            }
+        }
+    </script>
+</body>
+</html>

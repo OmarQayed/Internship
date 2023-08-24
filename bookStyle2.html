@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Div</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            width: 100%;
+        }
+
+        header {
+            background-color: grey;
+            text-align: center;
+            color: white;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            font-size: 30px;
+            padding: 10px;
+        }
+
+        .tableDiv {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .tableHeader{
+            display:flex;
+            align-items: center;
+            width: calc(100% - 20px);
+            border: 1px solid black;
+            font-weight: bold;
+        }
+
+        .tableRow {
+            display: flex;
+            align-items: center;
+            width: calc(100% - 20px);
+            border: 1px solid black;
+            border-top: none;
+            transition: all 1s;
+            position: relative;
+        }
+
+        .tableRow:hover{
+            background-color: lightgray;
+        }
+        .tableRow:hover .wrapper{
+            background-color: black;
+        }
+
+        .tableRow:nth-child(even) {
+            background-color: yellow;
+        }
+        .tableRow:nth-child(even):hover{
+            background-color: yellowgreen;
+        }
+        .tableRow:nth-child(even):hover .wrapper{
+            background-color: white;
+        }
+
+        .tableRow img {
+            max-width: 50px;
+            margin: auto;
+        }
+
+        .tableRowContent {
+            flex: 1;
+            text-align: center;
+            font-size: 15px;
+            padding: 10px;
+            /*border: 1px solid black;*/
+        }
+
+        .wrapper{
+            width: 50px;
+            height: auto;
+            transition: all 3s;
+            margin: auto;
+            padding: 5px;
+            justify-content: center;
+            align-items: center; 
+            border-radius: 7px; 
+            position: relative;
+        }
+
+        label{
+            display: inline-block;
+            text-align: left;
+            width:100px;
+            padding: 5px;
+        }
+
+        .design{
+            margin: auto;
+            display: table;
+            width: 300px;
+            padding: 5px;
+            text-align: left;
+        }
+
+        .designField{
+            width: calc(200px - 50px);
+            
+        }
+
+        /* .tableLabel{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width:calc(100%-50px);
+            margin-top: 20px;
+        }
+
+        .tableLabelRow {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 100%;
+        }
+
+        .tableLabelRowContent {
+            flex: 1;
+            text-align: left;
+            font-size: 15px;
+            padding: 5px;
+            margin-left: 20px;
+        } */
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <header>BOOK DIV</header>
+
+        <div class="tableDiv">
+
+            <div class="tableHeader">
+                <div class="tableRowContent"> Image </div>
+                <div class="tableRowContent"> Title </div>
+                <div class="tableRowContent"> Author </div>
+                <div class="tableRowContent"> Published In </div>
+            </div>
+
+            <div class="tableRow">
+                <div class="tableRowContent"> <div class="wrapper"> <img src="TheRoadAhead.jpg"> </div></div>
+                <div class="tableRowContent">The Road Ahead</div>
+                <div class="tableRowContent">Bill Gates</div>
+                <div class="tableRowContent">1996</div>
+            </div>
+            
+
+            <div class="tableRow">
+                
+                <div class="tableRowContent"> <div class="wrapper"> <img src="TheMartian.jpg"> </div> </div>
+                <div class="tableRowContent"> The Martian </div>
+                <div class="tableRowContent"> Andy Weri </div>
+                <div class="tableRowContent"> 2011 </div>
+            </div>
+
+            <div class="tableRow">
+                <div class="tableRowContent"> <div class="wrapper"><img src="BraveNewWorld.jpg">  </div> </div>
+                <div class="tableRowContent"> Brave New World </div>
+                <div class="tableRowContent"> Aldous Huxley </div>
+                <div class="tableRowContent"> 1932 </div>
+            </div>
+
+            <div class="tableRow">
+                <div class="tableRowContent"> <div class="wrapper"><img src="Hyperion.jpg"> </div> </div>
+                <div class="tableRowContent"> Hyperion </div>
+                <div class="tableRowContent"> Dan Simmons </div>
+                <div class="tableRowContent"> 1986 </div>
+            </div>
+
+            <div class="tableRow">
+                <div class="tableRowContent"> <div class="wrapper"> <img src="Foundation.jpg"> </div></div>
+                <div class="tableRowContent"> Foundation </div>
+                <div class="tableRowContent"> Isaac Asimov </div>
+                <div class="tableRowContent"> 1951 </div>
+            </div>
+            
+        </div>
+        <div id="data" style="margin-left: 9px; width: 100%;"></div>
+        
+    </div>
+    
+        <!-- <div class="design">
+            <label>Book Cover:</label>
+            <input type="file" id="fileInput"/>
+        </div>
+        <div class="design">
+          <label >Book Title:</label>
+          <input type="text" id="BookName" class="designField"/>
+        </div>
+        <div class="design">
+          <label>Author:</label>
+          <input type="text" id="BookAuthor" class="designField"/>
+        </div>
+        <div class="design">
+          <label>Published In:</label>
+          <input type="text" id="BookDate" class="designField"/>
+        </div>
+        <div >
+            <button type="submit" id="SubmitButton" style="margin:auto; display: table; column-span: 2;" > Submit </button>
+        </div> -->
+        
+        <form name="myForm" method="post">
+            <div class="design">
+                <input type="file" id="fileInput">
+            </div>
+            <div class="design">
+            Book Title: <input type="text" id="BookName" class="designField">
+            </div>
+            <div class="design">
+            Book Author: <input type="text" id="BookAuthor" class="designField">
+            </div>
+            <div class="design">
+            Published in: <input type="text" id="BookDate" class="designField">
+            </div>
+            <button type="submit" id="SubmitButton" style="margin:auto; display: table; column-span: 2;" > Submit </button>
+        </form>
+
+        <script>
+            function InputFunction(evnt){
+                evnt.stopPropagation();
+                evnt.preventDefault();
+                console.log(evnt);
+                const InputImage = document.getElementById('fileInput').value;
+                const InputTitle = document.getElementById('BookName').value.trim();
+                const InputAuthor = document.getElementById('BookAuthor').value.trim();
+                const InputDate = document.getElementById('BookDate').value.trim();
+        
+        
+                if (InputTitle === '' || InputAuthor === '' || InputDate === '') {
+                    alert('Please fill remaining fields');
+                    return;
+                }
+
+                document.getElementById('data').innerHTML += `
+                <div class="tableRow">
+                    <div class="tableRowContent"> <div class="wrapper"> <img src= "${InputImage}">  </div></div>
+                    <div class="tableRowContent">${InputTitle}</div>
+                    <div class="tableRowContent">${InputAuthor}</div>
+                    <div class="tableRowContent">${InputDate}</div>
+                </div>
+                `;
+        
+                document.getElementById('fileInput').value = '';
+                document.getElementById('BookName').value = '';
+                document.getElementById('BookAuthor').value = '';
+                document.getElementById('BookDate').value = '';
+            }
+        
+            document.getElementById('SubmitButton').addEventListener('click', InputFunction);
+        </script>
+</body>
+</html>
+
+<!-- <footer>
+    <div class="tableLabel">
+        <div class="tableLabelRow"> 
+            <div class="tableLabelRowContent"> Book cover: <input type="file" id="fileInput" name="fileInput"> </div>
+        </div>
+        <div class="tableLabelRow"> 
+            <div class="tableLabelRowContent"> Book title: <input type="text" id="BookName" name="BookName"> </div>
+        </div>
+        <div class="tableLabelRow"> 
+            <div class="tableLabelRowContent"> Book author: <input type="text" id="BookAuthor" name="BookAuthor"> </div>
+        </div>
+        <div class="tableLabelRow"> 
+            <div class="tableLabelRowContent"> Published in: <input type="text" id="BookDate" name="BookDate"> </div>
+        </div>
+        <div class="tableLabelRow"> 
+            <div class="tableLabelRowContent"> <button type="submit" id="SubmitButton">Submit</button> </div>
+        </div>
+    </div>
+</footer> -->

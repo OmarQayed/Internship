@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Zoo</title>
+    <style>
+            body, html{
+                height: 100%;
+            }
+
+            #dataOutput{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+            }
+
+            .item {
+                margin: 5px;
+                padding: 20px;
+                border: 1px solid black;
+                text-align: left;
+            }
+
+    </style>
+
+    </head>
+    <body>
+        <div id="dataOutput"></div>
+
+        <script>
+            const zoo = {
+                animals: {
+                    itemType: 'Animals',
+                    //itemValues: ["Tiger", "Cheeta", "Koala", "Gorilla", "Rhino"],
+                    itemValues: [
+                        {
+                            species: 'Tiger',
+                            country: 'Africa',
+                            age: 12,
+                        },
+                        {
+                            species: 'Cheeta',
+                            country: 'Namibia',
+                            age: 5,
+                        },
+                        {
+                            species: 'Koala',
+                            country: 'Austrilia',
+                            age: 3,
+                        },
+                        {
+                            species: 'Gorilla',
+                            country: 'Congo',
+                            age: 15,
+                        },
+                        {
+                            species: 'Rhino',
+                            country: 'South Africa',
+                            age: 12,
+                        },
+                    ]
+                },
+                birds: {
+                    itemType: 'Birds',
+                    //itemValues: ["Bald Eagle", "Ostriches", "Falcon", "Flamingo"],
+                    itemValues: [
+                        {
+                            species: 'Bald Eagle',
+                            country: 'Mexico',
+                            age: 7,
+                        },
+                        {
+                            species: 'Ostriches',
+                            country: 'Kenya',
+                            age: 15,
+                        },
+                        {
+                            species: 'Falcon',
+                            country: 'Africa',
+                            age: 9,
+                        },
+                        {
+                            species: 'Flamingo',
+                            country: 'Chile',
+                            age: 12,
+                        },
+                    ]
+                },
+            };
+
+            let output = '';
+
+            const items = Object.values(zoo);
+            for(let i=0; i < items.length; i++){
+                output += `<div class="item">
+                    <h3>${items[i].itemType}</h3>
+                    <ol>`;
+
+                for(let j=0; j < items[i].itemValues.length; j++){
+                    //output += `<li>${items[i].itemValues[j]}</li>`;
+                    
+                    const temp = items[i].itemValues[j];
+                    output += `<li> ${temp.species}, ${temp.country}, ${temp.age}</li>`;
+                    
+                }
+                output += '</ol></div>';
+            }
+        
+            document.getElementById('dataOutput').innerHTML = output;
+        </script>        
+    </body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Slideshow</title>
+    <style>
+        .container {
+            font-family: sans-serif;
+            margin: 0;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            display: flex;
+        }
+
+        .img {
+            display: flex;
+            position: relative;
+            align-items: center;
+        }
+
+        .img img {
+            height: 500px;
+            margin: 10px;
+        }
+
+        .prev, .next {
+            position: relative;
+            top: 50%;
+        }
+
+        .textbox {
+            display: flex;
+            position: relative;
+            height: auto;
+            background-color: yellow;
+            border-radius: 8px;
+            align-items: center;
+            text-align: center;
+        }
+
+        .txt {
+            position: absolute;
+            top: 80%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: lightgray;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body class="container">
+    <button class="prev" onclick="changeImage(-1)">
+        <img src="leftArrow.png" alt="Previous" width="20px" height="20px">
+    </button>
+
+    <div class="img">
+        <img id="prevImg" src="BraveNewWorld.jpg" width="300px">
+        
+        <div class="textbox">
+            <img id="currentImg" src="TheMartian.jpg" width="300px">
+            <div class="txt" id="dateBox"> Published in 2011 </div>
+        </div>
+        
+        <img id="nextImg" src="TheRoadAhead.jpg" width="300px">
+    </div>
+
+    <button class="next" onclick="changeImage(1)">
+        <img src="rightArrow.png" alt="Next" width="40px" height="auto">
+    </button>
+</div>
+
+    
+
+    <script>
+        const slides = [
+            {
+                date: "1932",
+                image: "BraveNewWorld.jpg"
+            },
+            {
+                date: "2011",
+                image: "TheMartian.jpg"
+            },
+            {
+                date: "1996",
+                image: "TheRoadAhead.jpg"
+            },
+            {
+                date: "1951",
+                image: "Foundation.jpg"
+            },
+            {
+                date: "1986",
+                image: "Hyperion.jpg"
+            },
+        ];
+        let index = 1;
+        const currentImg = document.getElementById("currentImg");
+        const prevImg = document.getElementById("prevImg");
+        const nextImg = document.getElementById("nextImg");
+
+        function changeImage(next) {
+            index += next;
+            if (index < 0) {
+                index = slides.length - 1;
+            } else if (index >= slides.length) {
+                index = 0;
+            }
+            
+            const prevIndex = (index - 1 + slides.length) % slides.length;
+            const nextIndex = (index + 1) % slides.length;
+
+            currentImg.src = slides[index].image;
+            
+            const dateBox = document.getElementById("dateBox");
+            dateBox.textContent = `Published in ${slides[index].date}`;
+
+            prevImg.src = slides[prevIndex].image;
+            nextImg.src = slides[nextIndex].image;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+#myBook{
+    background-color: black;
+    color:white;
+    padding:40px;
+    text-align: center;
+}
+
+.book{
+    background-color: blue;
+    color:white;
+    padding:20px;
+    text-align: center;
+}
+
+h2 {
+    color: black;
+    background-color: yellow;
+    font-size: 300%;
+    text-align-last: center;
+    font-family: cursive;
+}
+p {
+    color:green;
+    border: 2px solid black;
+    padding: 20px;
+}
+
+</style>
+</head>
+
+<body>
+<h1 id="myBook" > Book title</h1>
+<p class = "book" id="author"> Author </p>
+<p class = "book" id="date"> Date </p>
+
+<h2> CSS HEADER TEST </h2>
+<p> CSS PARAGRAPH TEST </p>
+
+<script>
+    document.getElementById("myBook").innerHTML="The Road Ahead";
+    document.getElementById("author").innerHTML="by Bill Gates";
+    document.getElementById("date").innerHTML="published 1996";
+</script>
+
+</body>
+</html>
